@@ -11,7 +11,7 @@ namespace MilkStats {
     internal static class ModInfo {
         internal const string Guid = "air1068.elin.milkstats";
         internal const string Name = "MilkStats";
-        internal const string Version = "0.1.0";
+        internal const string Version = "0.1.1";
     }
 
     [BepInPlugin(ModInfo.Guid, ModInfo.Name, ModInfo.Version)]
@@ -36,7 +36,7 @@ namespace MilkStats {
         }
 
         static void Postfix(Thing __instance, UINote n) {
-            if (__instance.trait is TraitDrinkMilkMother) {
+            if (__instance.trait is TraitDrinkMilkMother && !__instance.trait.owner.c_idRefCard.IsNull()) {
                 int tmp_uidNext = EClass.game.cards.uidNext;
                 EClass.game.cards.uidNext = 1;
                 Rand.SetSeed(1);
